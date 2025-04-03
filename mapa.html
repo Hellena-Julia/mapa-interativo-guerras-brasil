@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Interativo - Guerras no Brasil</title>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.0/mapbox-gl.css" rel="stylesheet" />
+    <style>
+        body { margin: 0; display: flex; }
+        #map { width: 100vw; height: 100vh; }
+        
+        /* Barra lateral */
+        #sidebar {
+            width: 25vw;
+            height: 100vh;
+            padding: 20px;
+            background: white;
+            overflow-y: auto;
+            position: fixed;
+            right: 0;
+            top: 0;
+            display: none; /* Barra lateral começa oculta */
+            transition: transform 0.3s ease;
+            transform: translateX(100%); /* Começa fora da tela */
+        }
+
+        /* Setinha para expandir/recolher a barra lateral */
+        #sidebar-toggle {
+            position: absolute;
+            left: -30px;
+            top: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        /* Botão X para fechar */
+        #close-sidebar {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        /* Barra lateral aberta */
+        #sidebar.open {
+            transform: translateX(0); /* Expande a barra lateral */
+            display: block; /* Barra lateral visível */
+        }
+
+        /* Estilo da imagem no pop-up */
+        .popup-img {
+            width: 100%;
+            max-height: 150px;
+            border-radius: 8px;
+            margin-top: 5px;
+        }
+
+        /* Estilo para o link de 'Saiba mais' */
+        .popup-link {
+            color: blue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <div id="sidebar">
+        <span id="sidebar-toggle">&#8594;</span>
+        <span id="close-sidebar">&#10006;</span> <!-- Botão X para fechar -->
+        <iframe id="sidebarContent" style="width:100%; height:100%;" frameborder="0"></iframe>
+    </div>
+    <script src="mapa.js"></script>
+</body>
+</html>
