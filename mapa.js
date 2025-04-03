@@ -4,7 +4,15 @@ const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [-50, -15], // Centraliza no Brasil
-    zoom: 4
+    zoom: 4,
+    pitch: 45, // Inclinação do mapa para 3D
+    projection: 'globe', // Habilita o globo 3D
+    antialias: true // Ativa o anti-aliasing para melhor qualidade de renderização
+});
+
+// Adiciona a opção de "globo" para visualização 3D
+map.on('style.load', () => {
+    map.setFog({}); // Ativa a névoa do globo para um visual mais realista
 });
 
 // Lista de guerras com localização, imagem e link da Wikipedia
@@ -29,6 +37,27 @@ const guerras = [
         coordenadas: [-39.3200, -17.7300], // Região aproximada no Espírito Santo/Bahia
         imagem: "imagens/guerra_aimores.jpg",
         wikipedia: "https://pt.wikipedia.org/wiki/Guerra_dos_Aimor%C3%A9s"
+    },
+    {
+        nome: "Batalha de Uruçumirim (1567)",
+        descricao: "Batalha decisiva na expulsão definitiva dos franceses da cidade de São Sebastião do Rio de Janeiro.",
+        coordenadas: [-43.1800, -22.9068], // Local aproximado no Rio de Janeiro
+        imagem: "imagens/batalha_urucumirim.jpg",
+        wikipedia: "https://pt.wikipedia.org/wiki/Batalha_de_Uruçumirim"
+    },
+    {
+        nome: "Batalha de Guaxenduvas (1614)",
+        descricao: "Batalha contra os indígenas Guaxenduva no litoral do Rio de Janeiro.",
+        coordenadas: [-43.4200, -22.7300], // Local aproximado no litoral do Rio de Janeiro
+        imagem: "imagens/batalha_guaxenduvas.jpg",
+        wikipedia: "https://pt.wikipedia.org/wiki/Batalha_de_Guaxenduvas"
+    },
+    {
+        nome: "Batalha de M'Bororé (1641)",
+        descricao: "Batalha contra os indígenas na região de São Paulo.",
+        coordenadas: [-46.6000, -23.2000], // Região aproximada de São Paulo
+        imagem: "imagens/batalha_mborore.jpg",
+        wikipedia: "https://pt.wikipedia.org/wiki/Batalha_de_M%27Bororé"
     }
 ];
 
